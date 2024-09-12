@@ -12,4 +12,4 @@ module load openmpi/gcc/64/1.10.1
 module load lammps/gcc/4may22
 
 # Run lammps
-env OMP_RUN_THREADS=1 mpirun -np 4 lmp -sf omp -in in.assembly.lmp -var L 10.69 -var NCL 100 -var NMO 1900 -var seed1 1234 -var seed2 4321 -var seed3 3124 -var steps 1500000 -var tstep 0.005 -var sstep 10000
+mpirun -np 4 lmp -sf omp -in in.assembly.lmp -var L 10.69 -var NCL 100 -var NMO 1900 -var seed1 1234 -var seed2 4321 -var seed3 3124 -var steps 1500000 -var tstep 0.005 -var sstep 10000
