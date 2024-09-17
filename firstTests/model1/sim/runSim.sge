@@ -1,0 +1,12 @@
+#!/bin/bash
+#$ -S /bin/bash
+#$ -N G_eta0.6_r
+#$ -pe mpich 4
+#$ -cwd
+#$ -j yes
+
+. /etc/profile.d/modules.sh
+module load gcc/8.3.0
+module load openmpi/gcc/64/1.10.1
+
+mpirun -n 4 /mnt/MD1200B/cferreiro/fbenavides/lammps-2Aug2023/src/lmp_mpi -in in.assembly.lmp -var L 10.69025 -var NCL 200 -var NMO 1800 -var seed1 1234 -var seed2 4321 -var seed3 3124 -var steps 1500000 -var tstep 0.005 -var sstep 10000
