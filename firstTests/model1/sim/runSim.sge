@@ -10,3 +10,5 @@ module load gcc/8.3.0
 module load openmpi/gcc/64/1.10.1
 
 mpirun -n 4 /mnt/MD1200B/cferreiro/fbenavides/lammps-2Aug2023/src/lmp_mpi -in in.assembly.lmp -var L 10.69025 -var NCL 200 -var NMO 1800 -var seed1 1234 -var seed2 4321 -var seed3 3124 -var steps 1500000 -var tstep 0.005 -var sstep 10000
+
+mpirun -n 4 /mnt/MD1200B/cferreiro/fbenavides/lammps-2Aug2023/src/lmp_mpi -in in.assembly.lmp -var tstep 0.001 -var sstep 10000 -var shear_rate 0.02 -var max_strain 12 -var Nstep_per_strain 50000 -var shear_it 600000 -var Nsave 500 -var seed3 3124 -var Nave 1000 -var rlxT1 25 -var rlxT2 50 -var rlxT3 100 -var rlxT4 200
