@@ -151,7 +151,7 @@ echo "module load openmpi/gcc/64/1.10.1" >> $file_name
 echo "" >> $file_name
 echo "mpirun -n ${nodes} /mnt/MD1200B/cferreiro/fbenavides/lammps-2Aug2023/src/lmp_mpi -in in.assembly.lmp -var L ${L} -var NCL ${N_CL} -var NMO ${N_MO} -var seed1 ${seed1} -var seed2 ${seed2} -var seed3 ${seed3} -var steps ${steps} -var tstep ${tstep} -var sstep ${sstep}" >> $file_name
 
-
+echo pwd
 echo "$dir_name"
 echo "$N_CL"
 echo "$N_MO"
@@ -172,4 +172,5 @@ echo "$relaxTime3"
 echo "$relaxTime4"
 
 qsub $file_name
- 
+qstat -s r
+
