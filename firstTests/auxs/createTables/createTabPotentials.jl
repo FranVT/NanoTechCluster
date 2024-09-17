@@ -59,7 +59,7 @@ end
 ## Pairwise patch-patch interaction
 
 # Parameters
-N = 2^20;
+N = 1000000; #2^20;
 sig = 0.4;
 eps = 1.0;
 rmin = 0.000001;
