@@ -8,6 +8,6 @@ pair_coeff 1 1 lj/cut 1.0 1.0 1.12 # i-type j-type pair-style eps sigma cutoff
 pair_coeff 2 2 lj/cut 1.0 1.0 1.12 # i-type j-type pair-style eps sigma cutoff
 pair_coeff 1 2 lj/cut 1.0 1.0 1.12 # i-type j-type pair-style eps sigma cutoff
 pair_modify shift yes
-pair_coeff 3 4 table sysFiles/pachTab.table POT 0.6 #0.75 
-pair_coeff 4 4 table sysFiles/pachTab.table POT 0.6 #0.75 
+pair_coeff 3 4 table pachTab.table POT 0.6 #0.75 
+pair_coeff 4 4 table pachTab.table POT 0.6 #0.75 
 pair_coeff * * threebody/table swapMech.3b NULL NULL PA PB
