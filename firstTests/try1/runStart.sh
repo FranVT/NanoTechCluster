@@ -131,7 +131,6 @@ cd ..;
 ## Create the qsub file
 cd sim;
 file_name="runSim.sge";
-
 rm -f $file_name
 
 # Parameters for the cluster

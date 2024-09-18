@@ -157,19 +157,36 @@ cd ..; cd ..;
 cd sim;
 
 # Create the execute bash script
-file_name="runSim.sh";
+bash runSim.sh
+
+file_name="runSim.sge";
 rm -f $file_name
-echo -e "#!/bin/bash" >> $file_name;
-echo -e "" >> $file_name;
-echo -e "env OMP_RUN_THREADS=2 mpirun -np 8 lmp -sf omp -in in.assemblyShear.lmp -var L $L -var NCL $N_CL -var NMO $N_MO -var seed1 $seed1 -var seed2 $seed2 -var seed3 $seed3 -var steps $steps -var tstep $tstep -var sstep $sstep" >> $file_name;
-echo -e "" >> $file_name;
-echo -e "env OMP_RUN_THREADS=2 mpirun -np 8 lmp -sf omp -in in.deformationShear.lmp -var tstep $tstep_defor -var sstep $sstep_defor -var shear_rate $shear_rate -var max_strain $max_strain -var Nstep_per_strain $Nstep_per_strain -var shear_it $shear_it -var Nsave $Nsave -var seed3 $seed3 -var Nave $Nave -var rlxT1 $relaxTime1 -var rlxT2 $relaxTime2 -var rlxT3 $relaxTime3 -var rlxT4 $relaxTime4" >> $file_name;
+
+# Parameters for the cluster
+nodes=4;
+
+# Create the sge file
+echo "#!/bin/bash">> $file_name
+echo "#$ -S /bin/bash">> $file_name
+echo "#$ -N G_eta${phi}_r${rnn}" >> $file_name
+echo "#$ -pe mpich ${nodes}" >> $file_name
+echo "#$ -cwd" >> $file_name
+echo "#$ -j yes" >> $file_name
+echo "" >> $file_name
+echo ". /etc/profile.d/modules.sh">> $file_name
+echo "module load gcc/8.3.0" >> $file_name
+echo "module load openmpi/gcc/64/1.10.1" >> $file_name
+#echo "module load lammps/gcc/4may22" >> $file_name
+echo "" >> $file_name
+#echo "mpirun -n ${nodes} /mnt/MD1200B/cferreiro/fbenavides/lammps-2Aug2023/src/lmp_mpi -in in.assembly.lmp -var L ${L} -var NCL ${N_CL} -var NMO ${N_MO} -var seed1 ${seed1} -var seed2 ${seed2} -var seed3 ${seed3} -var steps ${steps} -var tstep ${tstep} -var sstep ${sstep}" >> $file_name
+#echo "" >> $file_name
+echo "mpirun -n ${nodes} /mnt/MD1200B/cferreiro/fbenavides/lammps-2Aug2023/src/lmp_mpi -in in.assembly.lmp -var tstep ${tstep_defor} -var sstep ${sstep_defor} -var shear_rate ${shear_rate} -var max_strain ${max_strain} -var Nstep_per_strain ${Nstep_per_strain} -var shear_it ${shear_it} -var Nsave ${Nsave} -var seed3 ${seed3} -var Nave ${Nave} -var rlxT1 ${rt1_aux} -var rlxT2 ${rt2_aux} -var rlxT3 ${rt3_aux} -var rlxT4 ${rt4_aux}" >> $file_name
+echo "" >> $file_name;
+echo "mpirun -n ${nodes} /mnt/MD1200B/cferreiro/fbenavides/lammps-2Aug2023/src/lmp_mpi -in in.deformationShear.lmp -var tstep $tstep_defor -var sstep $sstep_defor -var shear_rate $shear_rate -var max_strain $max_strain -var Nstep_per_strain $Nstep_per_strain -var shear_it $shear_it -var Nsave $Nsave -var seed3 $seed3 -var Nave $Nave -var rlxT1 $relaxTime1 -var rlxT2 $relaxTime2 -var rlxT3 $relaxTime3 -var rlxT4 $relaxTime4" >> $file_name;
 echo -e "" >> $file_name;
 echo -e "cp -r info ..;" >> $file_name;
 echo -e "cd ..;" >> $file_name;
 echo -e "mv -f info data/$dir_name;" >> $file_name;
-
-bash runSim.sh
 
 echo "Working directory: $(pwd)"
 echo "$dir_name"
@@ -191,4 +208,4 @@ echo "$relaxTime2"
 echo "$relaxTime3"
 echo "$relaxTime4"
 
-
+qsub $file_name
