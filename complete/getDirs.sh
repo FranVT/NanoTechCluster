@@ -4,4 +4,4 @@
 
 file_name=dirs.txt;
 rm -f $file_name;
-echo $(ls -d complete/sgn*/system*) >> $file_name
+echo $(ls -d sgn*/system*) >> $file_name
