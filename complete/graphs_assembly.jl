@@ -44,7 +44,7 @@ time_assembly=parameters[1][7].*energy_assembly[1][1,:];
 
 # Labels
 aux_CL=map(s->Int64.(round(parameters[s][3]*100)),eachindex(parameters));
-auxsdir=map(s->s[1],split.(dirs,"/"));
+auxsdir=map(s->s[2],split.(dirs,"/"));
 #labels_CL=string.(first.(split.(dirs,"/"))," CL=",aux_CL,"%");
 labels_CL=string.(auxsdir," CL=",aux_CL,"%");
 
