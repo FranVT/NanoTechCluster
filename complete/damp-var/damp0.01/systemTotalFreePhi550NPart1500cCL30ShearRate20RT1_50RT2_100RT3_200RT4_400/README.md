@@ -13,7 +13,7 @@
 - Box Volume: 7996.66363 [sigma^3]
 - Packing fraction: 0.55
 - Time step: 0.001 [tau]
-- Number of time steps: 3500000
+- Number of time steps: 6000000
 - Save every 10000 time step
 - Numer of Cross-Linkers: 45
 - Number of Monomers: 1455
@@ -22,7 +22,7 @@
 
 - Box Volume: 7996.66363[sigma^3]
 - Time step: 0.001 [tau]
-- Number of time steps: 3500000
+- Number of time steps: 6000000
 - Number of time steps per deformation: 50000
 - Save every 10000 time step
 - Shear rate: 0.02 [1/tau]
