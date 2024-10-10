@@ -5,4 +5,5 @@
 file_name=dirs.txt;
 rm -f $file_name;
 #echo $(ls -d sgn*/system*) >> $file_name
+#echo $(ls -d damp-var/damp*/system*) >> $file_name
 echo $(ls -d damp-var/damp*/system*) >> $file_name
